@@ -9,15 +9,15 @@ from discord.ext import commands
 
 def get_prefix(client, message):
     """
-        Fonction qui permet de récupérer le prefixe lié
-        au discord ou le message a été envoyé.
+        Function which returns the prefix of the guild in which the message
+        was sent
 
         Parameters:
-            - client (client) : le client discord
-            - message (message) : le message envoyé
+            - client (client) : current discord client
+            - message (message) : the message sent
         
         Returns :
-            - prefix (commands prefix) : renvoi le prefix
+            - prefix (commands prefix) : the guild prefix
     """
 
     guild_id = str(message.guild.id)
@@ -31,15 +31,15 @@ def get_prefix(client, message):
 
 def get_guild_prefix(client, guild_id):
     """
-        Fonction qui permet de récupérer le prefixe lié
-        au discord ou le message a été envoyé.
+        Function which returns the prefix of a guild.
 
         Parameters:
-            - client (client) : le client discord
-            - guild_id (guild_id) : id du discord duquel on veut récupérer le prefixe
+            - client (client) : discord client
+            - guild_id (guild_id) : id of the guild you wants to get
+                the prefix back
         
         Returns :
-            - prefix (discord prefix) : renvoi le prefixe
+            - prefix (discord prefix) : the guild prefix
     """
 
     data = read_json('prefixes')

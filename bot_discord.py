@@ -41,6 +41,7 @@ client.color={
     "DARK_ORANGE": 0xA84300,
     "DARK_RED": 0x992D22,
     "DARK_NAVY": 0x2C3E50,
+    "BLACK": 0x000000,
 }
 
 

@@ -9,11 +9,14 @@ from pathlib import Path
 
 def get_path():
     """
-        Fonction qui permet de retrouver le chemin
-        d'accès du fichier bot_discord.py
+        Function which send back the path of the first parents
+        from the current forlder.
+
+        Parameters :
+            None
 
         Returns :
-            - cwd (string) : chemin d'accès de bot_discord.py
+            - cwd (string) : path of the first parent
     """
 
     cwd = Path(__file__).parents[1]
@@ -23,14 +26,13 @@ def get_path():
 
 def read_json(filename):
     """
-        Fonction qui permet de lire un fichier .json qui se trouve dans le 
-        dossier bot_config.
+        Function to read a json file
 
         Parameters :
-            - filename (string) : nom du fichier json a charger
+            - filename (string) : filename
         
         Returns :
-            - data (dict) : contenue du fichier json voulue
+            - data (dict) : data stored in the json file
     """
 
     cwd = get_path()
@@ -41,12 +43,14 @@ def read_json(filename):
 
 def write_json(data, filename):
     """
-        Fonction qui permet de modifier un fichier .json qui se trouve dans le 
-        dossier bot_config.
+        Function to modigy a json file.
 
         Parameters :
-            - data (dict) : contenue de la modification du json
-            - filename (string) : nom du fichier json a charger
+            - data (dict) : modification of the json file
+            - filename (string) : name of the json file to modify
+        
+        Returns :
+            None
     """
 
     cwd = get_path()

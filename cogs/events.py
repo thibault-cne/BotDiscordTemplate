@@ -4,7 +4,9 @@
 """
 
 import discord
+from discord import guild
 from discord.ext import commands
+from discord.ext.commands.core import command
 
 from cogs._corePrefix import get_guild_prefix
 from cogs._coreJson import read_json
@@ -38,6 +40,17 @@ class Events(commands.Cog):
         
         if guild_id in data and message.content[len(prefix):] in data[guild_id]['disabledCommands']:
             return
+
+
+    @commands.Cog.listener()
+    async def on_member_join(self, user: discord.Member):
+        guild_id = str(user.guild.id)
+        user_id = str(user.id)
+
+        blackList = read_json('blackList')
+
+        if user_id in blackList[guild_id]['BlackListMember']:
+            await user.kick(reason="Vous êtes blacklist")
 
 
 def setup(client):

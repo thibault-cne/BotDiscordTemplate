@@ -4,14 +4,11 @@
 """
 
 import discord
-from discord import embeds
-from discord import guild
 from discord.ext import commands
 import os
 
 from cogs._coreJson import read_json, write_json
 from cogs._corePrefix import get_guild_prefix
-from cogs._coreChecks import check_disabledCommands
 from discord.ext.commands.errors import ExtensionNotLoaded
 
 
@@ -26,7 +23,6 @@ class Admin(commands.Cog):
         description='Permet de recharger tout les cogs.'
     )
     @commands.is_owner()
-    @check_disabledCommands()
     async def reload(self, ctx):
         loadingText = ""
         

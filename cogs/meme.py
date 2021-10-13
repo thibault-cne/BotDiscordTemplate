@@ -4,10 +4,10 @@
 """
 
 import discord
-from discord import embeds
 from discord.ext import commands
 
 from cogs._coreMeme import get_images, get_meme
+from cogs._coreChecks import check_disabledCommands
 
 class Meme(commands.Cog):
     def __init__(self, client):
@@ -19,6 +19,7 @@ class Meme(commands.Cog):
         description='Permet de renvoyer une image suivant le theme demandé.',
         usage='<theme>'
     )
+    @check_disabledCommands()
     async def image(self, ctx, theme):
         
         async with ctx.typing():
@@ -38,6 +39,7 @@ class Meme(commands.Cog):
         description='Renvoie un meme aléatoire tiré de Reddit',
         usage='[nombre] || De base 1 et max 5'
     )
+    @check_disabledCommands()
     async def meme(self, ctx, number=1):
         if number >= 5:
             errorEmbed = discord.Embed(

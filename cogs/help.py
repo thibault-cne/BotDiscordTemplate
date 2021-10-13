@@ -9,6 +9,7 @@ from discord.ext import commands
 import math
 import re
 from cogs._corePrefix import get_guild_prefix
+from cogs._coreChecks import check_disabledCommands
 
 unecessaryCogs = ['CommandErrorHandler', 'Events']
 
@@ -23,6 +24,7 @@ class Help(commands.Cog):
         aliases=['h'],
         usage="[Numéro de page/nom de commande]"
     )
+    @check_disabledCommands()
     async def help(self, ctx, cog="1"):
         helpEmbed = discord.Embed(
             title="Help commande !",

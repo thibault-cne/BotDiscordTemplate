@@ -5,12 +5,10 @@
 
 import requests
 from bs4 import BeautifulSoup
-from random import shuffle, choice
+from random import shuffle
 import asyncpraw
 import os
 from dotenv import load_dotenv, find_dotenv
-import asyncio
-
 
 dotenv_file = find_dotenv()
 load_dotenv(dotenv_file)
@@ -21,6 +19,18 @@ PASSWORD = os.getenv('REDDIT_PASSWORD')
 
 
 def get_images(number, word):
+    """
+        Function to get images on a certain theme
+
+        Parameters :
+            - number (int) : number of images that you wants
+            - word (string) : theme you want the images to be related with
+
+        Returns :
+            - return_images (list) : list of url images
+    """
+
+
     url = 'https://www.google.com/search?q={0}&tbm=isch'.format(word)
     content = requests.get(url).content
     soup = BeautifulSoup(content, features="html.parser")
@@ -41,6 +51,16 @@ def get_images(number, word):
 
 
 async def get_meme(number):
+    """
+        Function to get reddit memes
+
+        Parameters :
+            - number (int) : number of memes that you wants
+
+        Returns :
+            - return_images (list) : list of reddit memes
+    """
+
     reddit = asyncpraw.Reddit(
         client_id=USER,
         client_secret=SECRET,
