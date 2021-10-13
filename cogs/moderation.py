@@ -4,14 +4,11 @@
 """
 
 import discord
-from discord import guild
-from discord import embeds
 from discord.ext import commands
-import os
 
 from cogs._coreJson import read_json, write_json
 from cogs._corePrefix import get_guild_prefix
-from discord.ext.commands.errors import ExtensionNotLoaded
+from cogs._coreChecks import check_disabledCommands
 
 
 
@@ -25,6 +22,7 @@ class Moderation(commands.Cog):
         description="Permet de blacklist un compte discord du serveur en l'empêchant de se reconnecter sans avoir a le ban.",
         usage="<@member>"
     )
+    @check_disabledCommands()
     async def blacklist(self, ctx, user: discord.User):
         blackList = read_json('blackList')
 
@@ -63,6 +61,7 @@ class Moderation(commands.Cog):
         description="Permet de un-blacklist un compte discord du serveur.",
         usage="<@member>"
     )
+    @check_disabledCommands()
     async def unblacklist(self, ctx, user: discord.User.id):
         blackList = read_json('blackList')
 
@@ -91,6 +90,7 @@ class Moderation(commands.Cog):
         name="blackedmember",
         description="Affiche la liste des membres blacklist du discord."
     )
+    @check_disabledCommands()
     async def blackedmember(self, ctx):
         guild_id = str(ctx.guild.id)
 
