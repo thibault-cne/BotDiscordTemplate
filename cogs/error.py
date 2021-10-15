@@ -26,9 +26,10 @@ class CommandErrorHandler(commands.Cog):
             
             elif isinstance(error, commands.BadArgument) or isinstance(error, commands.MissingRequiredArgument):
                 command = ctx.command
+                guild_id = str(ctx.guild.id)
                 errorText = f"Une erreur est survenue lors de l'utilisation de la commande : ```{command.name}```\n"
                 errorText += f"Voici l'utilisation classique de la commande **{command.name}**\n\
-                ```{self.client.prefix}{command.name} {command.usage if not None else ''}```\n\n\
+                ```{get_guild_prefix(self.client, guild_id)}{command.name} {command.usage if not None else ''}```\n\n\
                 Pour plus d'information utiliser la commande ```help```"
 
                 errorEmbed.description = errorText
